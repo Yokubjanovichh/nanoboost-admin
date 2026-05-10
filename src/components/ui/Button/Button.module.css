@@ -1,0 +1,141 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    opacity var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+  user-select: none;
+  border: 1px solid transparent;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.spinner {
+  animation: spin 0.7s linear infinite;
+}
+
+.loading .label {
+  opacity: 0.85;
+}
+
+.sizeSm {
+  height: 32px;
+  padding: 0 var(--space-3);
+  font-size: var(--font-size-sm);
+}
+
+.sizeSm .icon {
+  width: 14px;
+  height: 14px;
+}
+
+.sizeMd {
+  height: 40px;
+  padding: 0 var(--space-4);
+  font-size: var(--font-size-sm);
+}
+
+.sizeMd .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.sizeLg {
+  height: 48px;
+  padding: 0 var(--space-6);
+  font-size: var(--font-size-base);
+}
+
+.sizeLg .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.variantPrimary {
+  background-color: var(--color-accent-primary);
+  color: var(--color-text-primary);
+  border-color: var(--color-accent-primary);
+}
+
+.variantPrimary:hover:not(:disabled) {
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+
+.variantSecondary {
+  background-color: var(--color-bg-elevated);
+  color: var(--color-text-primary);
+  border-color: var(--color-border);
+}
+
+.variantSecondary:hover:not(:disabled) {
+  background-color: var(--color-bg-tertiary);
+  border-color: var(--color-border-hover);
+}
+
+.variantGhost {
+  background-color: transparent;
+  color: var(--color-text-secondary);
+  border-color: transparent;
+}
+
+.variantGhost:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: var(--color-text-primary);
+}
+
+.variantDanger {
+  background-color: var(--color-danger);
+  color: var(--color-text-primary);
+  border-color: var(--color-danger);
+}
+
+.variantDanger:hover:not(:disabled) {
+  background-color: #dc2626;
+  border-color: #dc2626;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

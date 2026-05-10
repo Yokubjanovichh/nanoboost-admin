@@ -1,0 +1,77 @@
+.page {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  background-color: var(--color-bg-primary);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.orb {
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(104, 73, 254, 0.22) 0%,
+    rgba(104, 73, 254, 0) 70%
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+
+.orbSecondary {
+  position: absolute;
+  bottom: -300px;
+  right: -200px;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(157, 33, 254, 0.18) 0%,
+    rgba(157, 33, 254, 0) 70%
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+
+.cardWrap {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.logoIcon {
+  width: 44px;
+  height: 44px;
+  filter: drop-shadow(0 8px 24px rgba(104, 73, 254, 0.45));
+}
+
+.logoText {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+}
+
+.footnote {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}

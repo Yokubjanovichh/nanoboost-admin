@@ -1,0 +1,46 @@
+.spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent-primary);
+}
+
+.icon {
+  animation: spin 0.7s linear infinite;
+}
+
+.sizeSm .icon {
+  width: 16px;
+  height: 16px;
+}
+
+.sizeMd .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.sizeLg .icon {
+  width: 36px;
+  height: 36px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  white-space: nowrap;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

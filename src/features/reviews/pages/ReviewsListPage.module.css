@@ -1,0 +1,44 @@
+.author {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+.serviceTitle {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.text {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.muted {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.featuredCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.featuredIcon {
+  color: var(--color-warning);
+}

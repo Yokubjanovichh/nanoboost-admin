@@ -1,0 +1,22 @@
+.row {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  color: var(--color-text-muted);
+}
+
+.star {
+  flex-shrink: 0;
+  transition: color var(--transition-fast);
+}
+
+.starFilled {
+  color: var(--color-warning);
+}
+
+.label {
+  margin-left: var(--space-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+}

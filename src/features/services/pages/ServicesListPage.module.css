@@ -1,0 +1,51 @@
+.thumb {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  background-color: var(--color-bg-tertiary);
+}
+
+.thumbPlaceholder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-muted);
+}
+
+.title {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+.featuredCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.priceCell {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.priceEur {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.featuredIcon {
+  display: inline-flex;
+  color: var(--color-warning);
+}
+
+.featuredOff {
+  color: var(--color-text-muted);
+}

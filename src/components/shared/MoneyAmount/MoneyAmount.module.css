@@ -1,0 +1,18 @@
+.amount {
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.sizeSm {
+  font-size: var(--font-size-sm);
+}
+
+.sizeMd {
+  font-size: var(--font-size-base);
+}
+
+.sizeLg {
+  font-size: var(--font-size-xl);
+}

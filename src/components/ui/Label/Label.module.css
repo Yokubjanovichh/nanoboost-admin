@@ -1,0 +1,8 @@
+.label {
+  display: inline-block;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  line-height: 1.2;
+  cursor: pointer;
+}

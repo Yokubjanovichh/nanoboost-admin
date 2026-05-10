@@ -1,0 +1,56 @@
+.email {
+  color: var(--color-accent-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.email:hover {
+  text-decoration: underline;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.contactItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.contactItem > svg {
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.muted {
+  color: var(--color-text-muted);
+}
+
+.eyeBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.eyeBtn:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+  border-color: var(--color-border-hover);
+  color: var(--color-text-primary);
+}

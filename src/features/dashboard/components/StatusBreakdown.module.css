@@ -1,0 +1,11 @@
+.wrap {
+  width: 100%;
+  min-height: 260px;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
+}
