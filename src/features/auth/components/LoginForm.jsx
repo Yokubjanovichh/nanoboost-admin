@@ -12,7 +12,7 @@ import styles from "./LoginForm.module.css";
 
 const schema = yup.object({
   email: yup.string().required(ru.auth.emailRequired).email(ru.auth.emailInvalid),
-  password: yup.string().required(ru.auth.passwordRequired).min(6, ru.auth.passwordMin),
+  password: yup.string().required(ru.auth.passwordRequired),
 });
 
 function getApiErrorMessage(error) {
