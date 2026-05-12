@@ -34,7 +34,8 @@ const schema = yup.object({
   description: yup.string().nullable(),
   sort_order: yup.number().typeError("Введите число").integer().min(0).default(0),
   is_active: yup.boolean().default(true),
-  image_url: yup.string().nullable(),
+  image_desktop_url: yup.string().nullable(),
+  image_mobile_url: yup.string().nullable(),
 });
 
 export function GameFormPage() {
@@ -64,7 +65,8 @@ export function GameFormPage() {
       description: "",
       sort_order: 0,
       is_active: true,
-      image_url: null,
+      image_desktop_url: null,
+      image_mobile_url: null,
     },
   });
 
@@ -79,7 +81,8 @@ export function GameFormPage() {
         description: game.description ?? "",
         sort_order: game.sort_order ?? 0,
         is_active: game.is_active ?? true,
-        image_url: game.image_url ?? null,
+        image_desktop_url: game.image_desktop_url ?? game.image_url ?? null,
+        image_mobile_url: game.image_mobile_url ?? null,
       });
       slugManuallyEditedRef.current = true;
     }
@@ -98,7 +101,8 @@ export function GameFormPage() {
       description: values.description?.trim() || null,
       sort_order: Number(values.sort_order) || 0,
       is_active: values.is_active,
-      image_url: values.image_url || null,
+      image_desktop_url: values.image_desktop_url || null,
+      image_mobile_url: values.image_mobile_url || null,
     };
 
     const onApiError = (err) => {
@@ -180,20 +184,40 @@ export function GameFormPage() {
           }
         >
           <div className={styles.fields}>
-            <div className={styles.field}>
-              <Label>{ru.games.fields.image}</Label>
-              <Controller
-                name="image_url"
-                control={control}
-                render={({ field, fieldState }) => (
-                  <ImageUpload
-                    value={field.value}
-                    onChange={field.onChange}
-                    folder="games"
-                    error={fieldState.error?.message}
-                  />
-                )}
-              />
+            <div className={styles.imageGrid}>
+              <div className={styles.field}>
+                <Label>{ru.games.fields.imageDesktop}</Label>
+                <Controller
+                  name="image_desktop_url"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <ImageUpload
+                      value={field.value}
+                      onChange={field.onChange}
+                      folder="games"
+                      error={fieldState.error?.message}
+                    />
+                  )}
+                />
+                <p className={styles.fieldHint}>{ru.games.fields.imageDesktopHint}</p>
+              </div>
+
+              <div className={styles.field}>
+                <Label>{ru.games.fields.imageMobile}</Label>
+                <Controller
+                  name="image_mobile_url"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <ImageUpload
+                      value={field.value}
+                      onChange={field.onChange}
+                      folder="games"
+                      error={fieldState.error?.message}
+                    />
+                  )}
+                />
+                <p className={styles.fieldHint}>{ru.games.fields.imageMobileHint}</p>
+              </div>
             </div>
 
             <Input

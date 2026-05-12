@@ -50,7 +50,8 @@ const schema = yup.object({
     .required(ru.services.validation.titleRequired)
     .min(2, ru.services.validation.titleMin)
     .max(300, ru.services.validation.titleMax),
-  image_url: yup.string().nullable().transform(emptyToNull),
+  image_desktop_url: yup.string().nullable().transform(emptyToNull),
+  image_mobile_url: yup.string().nullable().transform(emptyToNull),
   image_alt: yup.string().nullable().transform(emptyToNull).max(300, ru.services.validation.altMax),
   description: yup.array().nullable().transform(ensureArray).default([]),
   what_you_get: yup.array().nullable().transform(ensureArray).default([]),
@@ -82,7 +83,8 @@ const STATIC_DEFAULTS = {
   platform: "",
   slug: "",
   title: "",
-  image_url: null,
+  image_desktop_url: null,
+  image_mobile_url: null,
   image_alt: "",
   description: [],
   what_you_get: [],
@@ -101,7 +103,8 @@ function buildInitialValues(service, isEdit) {
     platform: String(service.platform ?? "").toLowerCase(),
     slug: service.slug ?? "",
     title: service.title ?? "",
-    image_url: service.image_url ?? null,
+    image_desktop_url: service.image_desktop_url ?? service.image_url ?? null,
+    image_mobile_url: service.image_mobile_url ?? null,
     image_alt: service.image_alt ?? "",
     description: ensureArray(service.description),
     what_you_get: ensureArray(service.what_you_get),
@@ -183,7 +186,8 @@ function ServiceFormPageInner({ service, isEdit, id }) {
       platform: values.platform,
       slug: values.slug.trim(),
       title: values.title.trim(),
-      image_url: values.image_url || null,
+      image_desktop_url: values.image_desktop_url || null,
+      image_mobile_url: values.image_mobile_url || null,
       image_alt: values.image_alt?.trim() || null,
       description: ensureArray(values.description),
       what_you_get: ensureArray(values.what_you_get),
@@ -322,20 +326,40 @@ function ServiceFormPageInner({ service, isEdit, id }) {
               })}
             />
 
-            <div className={styles.field}>
-              <Label>{ru.services.fields.image}</Label>
-              <Controller
-                name="image_url"
-                control={control}
-                render={({ field, fieldState }) => (
-                  <ImageUpload
-                    value={field.value}
-                    onChange={field.onChange}
-                    folder="services"
-                    error={fieldState.error?.message}
-                  />
-                )}
-              />
+            <div className={styles.imageGrid}>
+              <div className={styles.field}>
+                <Label>{ru.services.fields.imageDesktop}</Label>
+                <Controller
+                  name="image_desktop_url"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <ImageUpload
+                      value={field.value}
+                      onChange={field.onChange}
+                      folder="services"
+                      error={fieldState.error?.message}
+                    />
+                  )}
+                />
+                <p className={styles.fieldHint}>{ru.services.fields.imageDesktopHint}</p>
+              </div>
+
+              <div className={styles.field}>
+                <Label>{ru.services.fields.imageMobile}</Label>
+                <Controller
+                  name="image_mobile_url"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <ImageUpload
+                      value={field.value}
+                      onChange={field.onChange}
+                      folder="services"
+                      error={fieldState.error?.message}
+                    />
+                  )}
+                />
+                <p className={styles.fieldHint}>{ru.services.fields.imageMobileHint}</p>
+              </div>
             </div>
 
             <Input
