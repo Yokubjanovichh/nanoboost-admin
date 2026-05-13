@@ -125,7 +125,7 @@ export function ServicesListPage() {
         header: ru.services.columns.image,
         size: 64,
         cell: ({ row }) => {
-          const src = resolveImageUrl(row.original.image_url);
+          const src = resolveImageUrl(row.original.image_desktop_url ?? row.original.image_url);
           return src ? (
             <img src={src} alt="" className={styles.thumb} />
           ) : (
