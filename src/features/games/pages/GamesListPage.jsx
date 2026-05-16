@@ -40,23 +40,23 @@ function resolveImageUrl(url) {
 const STATUS_FILTERS = [
   { value: "all", label: ru.games.filterAll },
   { value: "active", label: ru.games.filterActive },
-  { value: "inactive", label: ru.games.filterInactive },
+  { value: "coming_soon", label: ru.games.filterComingSoon },
+  { value: "hidden", label: ru.games.filterHidden },
 ];
 
 function parseSearchParams(sp) {
   const page = Number(sp.get("page")) || 1;
   const pageSize = Number(sp.get("page_size")) || 20;
   const search = sp.get("search") ?? "";
-  const isActive = sp.get("is_active");
+  const status = sp.get("status") ?? "";
   const sort = sp.get("sort") ?? "-created_at";
-  return { page, pageSize, search, isActive, sort };
+  return { page, pageSize, search, status, sort };
 }
 
-function buildApiParams({ page, pageSize, search, isActive, sort }) {
+function buildApiParams({ page, pageSize, search, status, sort }) {
   const params = { page, page_size: pageSize, sort };
   if (search) params.search = search;
-  if (isActive === "true") params.is_active = true;
-  if (isActive === "false") params.is_active = false;
+  if (status) params.status = status;
   return params;
 }
 
@@ -77,12 +77,12 @@ export function GamesListPage() {
     if (merged.page > 1) sp.set("page", String(merged.page));
     if (merged.pageSize !== 20) sp.set("page_size", String(merged.pageSize));
     if (merged.search) sp.set("search", merged.search);
-    if (merged.isActive) sp.set("is_active", merged.isActive);
+    if (merged.status) sp.set("status", merged.status);
     if (merged.sort && merged.sort !== "-created_at") sp.set("sort", merged.sort);
     setSearchParams(sp);
   };
 
-  const hasActiveFilters = Boolean(filters.search || filters.isActive);
+  const hasActiveFilters = Boolean(filters.search || filters.status);
 
   const resetFilters = () => {
     const sp = new URLSearchParams();
@@ -90,8 +90,7 @@ export function GamesListPage() {
     setSearchParams(sp);
   };
 
-  const statusValue =
-    filters.isActive === "true" ? "active" : filters.isActive === "false" ? "inactive" : "all";
+  const statusValue = filters.status || "all";
 
   const columns = useMemo(
     () => [
@@ -125,8 +124,14 @@ export function GamesListPage() {
       {
         id: "status",
         header: ru.games.columns.status,
-        size: 120,
-        cell: ({ row }) => <StatusBadge isActive={row.original.is_active} />,
+        size: 130,
+        cell: ({ row }) => (
+          <StatusBadge
+            type="game"
+            status={row.original.status ?? "active"}
+            size="sm"
+          />
+        ),
       },
       {
         id: "sort_order",
@@ -169,7 +174,7 @@ export function GamesListPage() {
     );
   }
 
-  const hasFilters = Boolean(filters.search || filters.isActive);
+  const hasFilters = Boolean(filters.search || filters.status);
   const showEmpty = !isLoading && items.length === 0 && !hasFilters;
 
   return (
@@ -200,10 +205,7 @@ export function GamesListPage() {
           <Select
             value={statusValue}
             onValueChange={(v) =>
-              updateParams({
-                isActive: v === "active" ? "true" : v === "inactive" ? "false" : "",
-                page: 1,
-              })
+              updateParams({ status: v === "all" ? "" : v, page: 1 })
             }
           >
             <SelectTrigger style={{ width: 180 }}>

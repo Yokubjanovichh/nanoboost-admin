@@ -82,7 +82,14 @@ export const ru = {
     search: "Поиск по названию или slug",
     filterAll: "Все",
     filterActive: "Активные",
-    filterInactive: "Неактивные",
+    filterComingSoon: "Скоро",
+    filterHidden: "Скрытые",
+    status: "Статус",
+    statusActive: "Активна",
+    statusComingSoon: "Скоро",
+    statusHidden: "Скрыта",
+    statusHelp:
+      "Активна — игра видна и кликабельна. Скоро — видна как «Coming Soon». Скрыта — не показывается на сайте.",
     fields: {
       image: "Изображение",
       imageDesktop: "Изображение (десктоп / планшет)",
@@ -106,10 +113,6 @@ export const ru = {
       createdAt: "Создана",
       actions: "Действия",
     },
-    status: {
-      active: "Активна",
-      inactive: "Неактивна",
-    },
     actions: {
       edit: "Редактировать",
       enable: "Включить",
@@ -123,6 +126,7 @@ export const ru = {
       slugRequired: "Slug обязателен",
       slugFormat: "Только латинские буквы, цифры и дефисы (без двойных)",
       slugTaken: "Этот slug уже занят",
+      statusInvalid: "Недопустимое значение статуса",
     },
     toasts: {
       created: "Игра создана",

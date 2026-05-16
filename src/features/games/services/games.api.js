@@ -20,11 +20,6 @@ export async function updateGame(id, payload) {
   return data;
 }
 
-export async function toggleGame(id) {
-  const { data } = await apiClient.patch(`/games/${id}/toggle`);
-  return data;
-}
-
 export async function deleteGame(id) {
   const { data } = await apiClient.delete(`/games/${id}`);
   return data;
