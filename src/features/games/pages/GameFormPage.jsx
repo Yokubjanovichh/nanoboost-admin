@@ -9,8 +9,15 @@ import { Button } from "@/components/ui/Button/Button";
 import { Input } from "@/components/ui/Input/Input";
 import { Textarea } from "@/components/ui/Textarea/Textarea";
 import { NumberInput } from "@/components/ui/NumberInput/NumberInput";
-import { Switch } from "@/components/ui/Switch/Switch";
 import { Label } from "@/components/ui/Label/Label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/Select/Select";
+import { GAME_STATUSES, GAME_STATUS_LABEL } from "@/features/games/constants";
 import { Spinner } from "@/components/ui/Spinner/Spinner";
 import { ImageUpload } from "@/components/forms/ImageUpload/ImageUpload";
 import { useGame, useCreateGame, useUpdateGame } from "@/features/games/hooks/useGames";
@@ -33,7 +40,10 @@ const schema = yup.object({
     .matches(/^[a-z0-9]+(-[a-z0-9]+)*$/, ru.games.validation.slugFormat),
   description: yup.string().nullable(),
   sort_order: yup.number().typeError("Введите число").integer().min(0).default(0),
-  is_active: yup.boolean().default(true),
+  status: yup
+    .string()
+    .oneOf(GAME_STATUSES, ru.games.validation.statusInvalid)
+    .default("active"),
   image_desktop_url: yup.string().nullable(),
   image_mobile_url: yup.string().nullable(),
 });
@@ -64,7 +74,7 @@ export function GameFormPage() {
       slug: "",
       description: "",
       sort_order: 0,
-      is_active: true,
+      status: "active",
       image_desktop_url: null,
       image_mobile_url: null,
     },
@@ -80,7 +90,7 @@ export function GameFormPage() {
         slug: game.slug ?? "",
         description: game.description ?? "",
         sort_order: game.sort_order ?? 0,
-        is_active: game.is_active ?? true,
+        status: GAME_STATUSES.includes(game.status) ? game.status : "active",
         image_desktop_url: game.image_desktop_url ?? game.image_url ?? null,
         image_mobile_url: game.image_mobile_url ?? null,
       });
@@ -100,7 +110,7 @@ export function GameFormPage() {
       slug: values.slug.trim(),
       description: values.description?.trim() || null,
       sort_order: Number(values.sort_order) || 0,
-      is_active: values.is_active,
+      status: values.status,
       image_desktop_url: values.image_desktop_url || null,
       image_mobile_url: values.image_mobile_url || null,
     };
@@ -254,16 +264,29 @@ export function GameFormPage() {
             />
 
             <Controller
-              name="is_active"
+              name="status"
               control={control}
-              render={({ field }) => (
-                <div className={styles.switchRow}>
-                  <Label htmlFor="game-is-active">{ru.games.fields.isActive}</Label>
-                  <Switch
-                    id="game-is-active"
-                    checked={Boolean(field.value)}
-                    onCheckedChange={field.onChange}
-                  />
+              render={({ field, fieldState }) => (
+                <div className={styles.field}>
+                  <Label htmlFor="game-status">{ru.games.status}</Label>
+                  <Select value={field.value || "active"} onValueChange={field.onChange}>
+                    <SelectTrigger id="game-status">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {GAME_STATUSES.map((s) => (
+                        <SelectItem key={s} value={s}>
+                          {GAME_STATUS_LABEL[s]}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <p className={styles.fieldHint}>{ru.games.statusHelp}</p>
+                  {fieldState.error?.message && (
+                    <p className={styles.fieldError} role="alert">
+                      {fieldState.error.message}
+                    </p>
+                  )}
                 </div>
               )}
             />

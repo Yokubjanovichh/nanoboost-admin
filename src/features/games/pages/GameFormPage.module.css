@@ -30,12 +30,11 @@
   line-height: 1.4;
 }
 
-.switchRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  padding: var(--space-3) 0;
+.fieldError {
+  margin: 0;
+  font-size: var(--font-size-xs);
+  color: var(--color-danger);
+  line-height: 1.4;
 }
 
 .footer {
