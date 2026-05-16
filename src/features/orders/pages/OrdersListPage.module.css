@@ -43,6 +43,12 @@
   gap: var(--space-1);
 }
 
+.paymentBadgeInner {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
 .currencyTag {
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
