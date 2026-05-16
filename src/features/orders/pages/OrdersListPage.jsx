@@ -20,7 +20,12 @@ import { Button } from "@/components/ui/Button/Button";
 import { MoneyAmount } from "@/components/shared/MoneyAmount/MoneyAmount";
 import { DateRangeFilter } from "@/components/forms/DateRangeFilter/DateRangeFilter";
 import { useOrdersList } from "@/features/orders/hooks/useOrders";
-import { ORDER_STATUSES, PAYMENT_METHODS, PAYMENT_METHOD_VARIANT } from "@/features/orders/constants";
+import {
+  ORDER_STATUSES,
+  PAYMENT_METHODS,
+  PAYMENT_METHOD_VARIANT,
+  PAYMENT_METHOD_ICON,
+} from "@/features/orders/constants";
 import { formatDate } from "@/lib/utils";
 import { ru } from "@/locales/ru";
 import styles from "./OrdersListPage.module.css";
@@ -127,14 +132,18 @@ export function OrdersListPage() {
       {
         id: "payment",
         header: ru.orders.columns.payment,
-        size: 160,
+        size: 180,
         cell: ({ row }) => {
           const method = row.original.payment_method;
           const currency = row.original.display_currency;
+          const Icon = PAYMENT_METHOD_ICON[method];
           return (
             <div className={styles.paymentCell}>
               <Badge variant={PAYMENT_METHOD_VARIANT[method] ?? "neutral"}>
-                {ru.orders.paymentMethod[method] ?? method}
+                <span className={styles.paymentBadgeInner}>
+                  {Icon ? <Icon size={12} aria-hidden="true" /> : null}
+                  {ru.orders.paymentMethod[method] ?? method}
+                </span>
               </Badge>
               {currency && <span className={styles.currencyTag}>{currency}</span>}
             </div>

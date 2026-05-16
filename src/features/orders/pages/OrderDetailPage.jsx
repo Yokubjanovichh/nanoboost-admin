@@ -23,7 +23,11 @@ import { OrderStatusSelect } from "@/components/forms/OrderStatusSelect/OrderSta
 import { useOrder, useUpdateOrderStatus, useUpdateOrderNotes } from "@/features/orders/hooks/useOrders";
 import { useToast } from "@/components/ui/Toast/Toast";
 import { useCanUpdateOrders } from "@/features/auth/hooks/useAuth";
-import { isFinalStatus, PAYMENT_METHOD_VARIANT } from "@/features/orders/constants";
+import {
+  isFinalStatus,
+  PAYMENT_METHOD_VARIANT,
+  PAYMENT_METHOD_ICON,
+} from "@/features/orders/constants";
 import { formatDate, formatCurrency } from "@/lib/utils";
 import { ru } from "@/locales/ru";
 import styles from "./OrderDetailPage.module.css";
@@ -291,7 +295,13 @@ function OrderDetailPageInner({ order, id }) {
                 <Badge variant="neutral">{order.display_currency}</Badge>
                 <span>·</span>
                 <Badge variant={PAYMENT_METHOD_VARIANT[order.payment_method] ?? "neutral"}>
-                  {ru.orders.paymentMethod[order.payment_method] ?? order.payment_method}
+                  <span className={styles.paymentBadgeInner}>
+                    {(() => {
+                      const Icon = PAYMENT_METHOD_ICON[order.payment_method];
+                      return Icon ? <Icon size={12} aria-hidden="true" /> : null;
+                    })()}
+                    {ru.orders.paymentMethod[order.payment_method] ?? order.payment_method}
+                  </span>
                 </Badge>
               </div>
             </div>
@@ -341,6 +351,49 @@ function OrderDetailPageInner({ order, id }) {
             )}
           </div>
         </Card>
+
+        {order.payment_provider && (
+          <Card header={<CardTitle>{ru.orders.paymentSession}</CardTitle>}>
+            <div className={styles.fields}>
+              <div>
+                <span className={styles.fieldLabel}>{ru.orders.paymentProvider}</span>
+                <div className={styles.fieldValue}>{order.payment_provider}</div>
+              </div>
+
+              {order.payment_session_id && (
+                <div>
+                  <span className={styles.fieldLabel}>{ru.orders.paymentSessionId}</span>
+                  <div className={styles.fieldValueMono}>{order.payment_session_id}</div>
+                </div>
+              )}
+
+              {order.payment_checkout_url && (
+                <div>
+                  <span className={styles.fieldLabel}>{ru.orders.paymentCheckoutUrl}</span>
+                  <div className={styles.fieldValue}>
+                    <a
+                      href={order.payment_checkout_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.externalLink}
+                    >
+                      {ru.orders.openCheckoutLink} ↗
+                    </a>
+                  </div>
+                </div>
+              )}
+
+              {order.payment_status_updated_at && (
+                <div>
+                  <span className={styles.fieldLabel}>{ru.common.lastUpdated}</span>
+                  <div className={styles.fieldValue}>
+                    {formatDate(order.payment_status_updated_at)}
+                  </div>
+                </div>
+              )}
+            </div>
+          </Card>
+        )}
 
         <Card header={<CardTitle>{ru.orders.detail.customerComment}</CardTitle>}>
           <p className={order.comment ? styles.comment : styles.commentEmpty}>

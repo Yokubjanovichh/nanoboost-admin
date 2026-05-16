@@ -45,6 +45,42 @@
   color: var(--color-text-secondary);
 }
 
+.fieldValue {
+  margin-top: var(--space-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  word-break: break-word;
+}
+
+.fieldValueMono {
+  margin-top: var(--space-2);
+  font-family: var(--font-family-mono, "Courier New", monospace);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+  word-break: break-all;
+  padding: 6px 8px;
+  background-color: var(--color-bg-tertiary);
+  border-radius: var(--radius-sm);
+  display: inline-block;
+  max-width: 100%;
+}
+
+.externalLink {
+  color: var(--color-accent-primary);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+}
+
+.externalLink:hover {
+  text-decoration: underline;
+}
+
+.paymentBadgeInner {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
 .saveRow {
   display: flex;
   justify-content: flex-end;

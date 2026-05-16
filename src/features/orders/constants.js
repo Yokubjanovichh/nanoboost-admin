@@ -18,11 +18,20 @@ export const ORDER_STATUS_VARIANT = {
   refunded: "danger",
 };
 
-export const PAYMENT_METHODS = ["paypal", "usdt_trc20"];
+import { CreditCard, Wallet, Bitcoin } from "lucide-react";
+
+export const PAYMENT_METHODS = ["paypal", "usdt_trc20", "card_ecomtrade24"];
 
 export const PAYMENT_METHOD_VARIANT = {
   paypal: "info",
   usdt_trc20: "success",
+  card_ecomtrade24: "warning",
+};
+
+export const PAYMENT_METHOD_ICON = {
+  paypal: Wallet,
+  usdt_trc20: Bitcoin,
+  card_ecomtrade24: CreditCard,
 };
 
 export const isFinalStatus = (status) =>

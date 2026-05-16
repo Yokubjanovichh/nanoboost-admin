@@ -27,6 +27,7 @@ export const ru = {
     saving: "Сохранение...",
     resetFilters: "Сбросить",
     resetFiltersTooltip: "Очистить все фильтры",
+    lastUpdated: "Обновлено",
   },
   nav: {
     dashboard: "Дашборд",
@@ -333,8 +334,15 @@ export const ru = {
     paymentMethod: {
       paypal: "PayPal",
       usdt_trc20: "USDT (TRC20)",
+      card_ecomtrade24: "Visa / Mastercard",
       all: "Все способы",
     },
+
+    paymentSession: "Платёжная сессия",
+    paymentProvider: "Платёжный провайдер",
+    paymentSessionId: "ID сессии",
+    paymentCheckoutUrl: "Ссылка на оплату",
+    openCheckoutLink: "Открыть",
 
     filters: {
       allStatuses: "Все статусы",
