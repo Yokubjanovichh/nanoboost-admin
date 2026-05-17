@@ -81,6 +81,18 @@
   gap: 4px;
 }
 
+.paymentStatusRow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.paymentStatusTime {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
 .saveRow {
   display: flex;
   justify-content: flex-end;

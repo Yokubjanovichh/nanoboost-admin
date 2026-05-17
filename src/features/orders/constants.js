@@ -34,6 +34,20 @@ export const PAYMENT_METHOD_ICON = {
   card_ecomtrade24: CreditCard,
 };
 
+// Maps the order's lifecycle status onto a payment-focused label/colour
+// pair used by the order detail page. `failed` is included for the
+// upcoming webhook expansion (BE side); for now orders only ever land
+// in pending / paid / cancelled.
+export const PAYMENT_STATUS_FROM_ORDER = {
+  pending: { variant: "warning", labelKey: "paymentPending" },
+  paid: { variant: "success", labelKey: "paymentPaid" },
+  in_progress: { variant: "success", labelKey: "paymentPaid" },
+  completed: { variant: "success", labelKey: "paymentPaid" },
+  cancelled: { variant: "neutral", labelKey: "paymentCancelled" },
+  refunded: { variant: "neutral", labelKey: "paymentCancelled" },
+  failed: { variant: "danger", labelKey: "paymentFailed" },
+};
+
 export const isFinalStatus = (status) =>
   Array.isArray(ORDER_STATUS_TRANSITIONS[status]) &&
   ORDER_STATUS_TRANSITIONS[status].length === 0;
