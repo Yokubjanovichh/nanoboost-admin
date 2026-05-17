@@ -27,7 +27,9 @@ import {
   isFinalStatus,
   PAYMENT_METHOD_VARIANT,
   PAYMENT_METHOD_ICON,
+  PAYMENT_STATUS_FROM_ORDER,
 } from "@/features/orders/constants";
+import { CopyButton } from "@/components/ui/CopyButton/CopyButton";
 import { formatDate, formatCurrency } from "@/lib/utils";
 import { ru } from "@/locales/ru";
 import styles from "./OrderDetailPage.module.css";
@@ -356,6 +358,29 @@ function OrderDetailPageInner({ order, id }) {
           <Card header={<CardTitle>{ru.orders.paymentSession}</CardTitle>}>
             <div className={styles.fields}>
               <div>
+                <span className={styles.fieldLabel}>{ru.orders.paymentStatus}</span>
+                <div className={styles.fieldValue}>
+                  {(() => {
+                    const cfg =
+                      PAYMENT_STATUS_FROM_ORDER[order.status] ||
+                      PAYMENT_STATUS_FROM_ORDER.pending;
+                    return (
+                      <div className={styles.paymentStatusRow}>
+                        <Badge variant={cfg.variant}>
+                          {ru.orders[cfg.labelKey]}
+                        </Badge>
+                        {order.payment_status_updated_at && (
+                          <span className={styles.paymentStatusTime}>
+                            {formatDate(order.payment_status_updated_at)}
+                          </span>
+                        )}
+                      </div>
+                    );
+                  })()}
+                </div>
+              </div>
+
+              <div>
                 <span className={styles.fieldLabel}>{ru.orders.paymentProvider}</span>
                 <div className={styles.fieldValue}>{order.payment_provider}</div>
               </div>
@@ -383,11 +408,17 @@ function OrderDetailPageInner({ order, id }) {
                 </div>
               )}
 
-              {order.payment_status_updated_at && (
+              {/* Show the retry-link copy button only while the order
+                  is still waiting on payment — sending a fresh link to a
+                  cancelled / paid order would just confuse the customer. */}
+              {order.status === "pending" && order.payment_checkout_url && (
                 <div>
-                  <span className={styles.fieldLabel}>{ru.common.lastUpdated}</span>
+                  <span className={styles.fieldLabel}>{ru.orders.retryPayment}</span>
                   <div className={styles.fieldValue}>
-                    {formatDate(order.payment_status_updated_at)}
+                    <CopyButton
+                      value={order.payment_checkout_url}
+                      title={ru.orders.copyLinkTooltip}
+                    />
                   </div>
                 </div>
               )}

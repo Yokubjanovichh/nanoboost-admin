@@ -347,6 +347,17 @@ export const ru = {
     paymentSessionId: "ID сессии",
     paymentCheckoutUrl: "Ссылка на оплату",
     openCheckoutLink: "Открыть",
+    paymentStatus: "Статус оплаты",
+    paymentPending: "Ожидает оплаты",
+    paymentPaid: "Оплачено",
+    paymentCancelled: "Отменено",
+    paymentFailed: "Не удалось",
+    retryPayment: "Повторная оплата",
+    copyLink: "Скопировать ссылку",
+    copyLinkTooltip: "Скопировать ссылку для клиента",
+    copyLinkSuccess: "Ссылка скопирована",
+    copyLinkError: "Не удалось скопировать",
+    filterUnpaidOver24h: "Не оплачены > 24 ч",
 
     filters: {
       allStatuses: "Все статусы",

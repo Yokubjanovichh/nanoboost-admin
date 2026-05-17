@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { Eye } from "lucide-react";
+import { Eye, Clock } from "lucide-react";
 import { PageHeader } from "@/components/shared/PageHeader/PageHeader";
 import { Table } from "@/components/ui/Table/Table";
 import { Pagination } from "@/components/ui/Pagination/Pagination";
@@ -258,6 +258,28 @@ export function OrdersListPage() {
             updateParams({ dateFrom: from, dateTo: to, page: 1 })
           }
         />
+
+        <Button
+          type="button"
+          variant="secondary"
+          size="sm"
+          icon={<Clock size={14} />}
+          onClick={() => {
+            // dateTo is YYYY-MM-DD inclusive; yesterday's date gives us
+            // every order created on or before then — i.e. ~24h+ old.
+            const d = new Date();
+            d.setDate(d.getDate() - 1);
+            const yesterday = d.toISOString().slice(0, 10);
+            updateParams({
+              status: "pending",
+              dateTo: yesterday,
+              dateFrom: "",
+              page: 1,
+            });
+          }}
+        >
+          {ru.orders.filterUnpaidOver24h}
+        </Button>
       </FilterBar>
 
       {!isLoading && items.length === 0 && !filters.search && !filters.status && !filters.paymentMethod && !filters.dateFrom && !filters.dateTo ? (
