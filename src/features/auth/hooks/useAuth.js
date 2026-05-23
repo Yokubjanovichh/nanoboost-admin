@@ -105,3 +105,15 @@ export function useCanManageReviews() {
 export function useCanDeleteReviews() {
   return useHasRole("admin");
 }
+
+export function useCanReadFaqs() {
+  return useHasRole("viewer");
+}
+
+export function useCanManageFaqs() {
+  return useHasRole("manager");
+}
+
+export function useCanDeleteFaqs() {
+  return useHasRole("admin");
+}

@@ -6,6 +6,7 @@ import {
   ShoppingCart,
   Users,
   Star,
+  HelpCircle,
   LogOut,
 } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/Avatar/Avatar";
@@ -22,6 +23,7 @@ const NAV_ITEMS = [
   { to: "/orders", icon: ShoppingCart, label: ru.nav.orders },
   { to: "/clients", icon: Users, label: ru.nav.clients },
   { to: "/reviews", icon: Star, label: ru.nav.reviews },
+  { to: "/faqs", icon: HelpCircle, label: ru.nav.faqs },
 ];
 
 export function Sidebar({ open = false, onClose }) {
