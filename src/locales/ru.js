@@ -36,6 +36,7 @@ export const ru = {
     orders: "Заказы",
     clients: "Клиенты",
     reviews: "Отзывы",
+    faqs: "FAQ",
     logout: "Выйти",
     profile: "Профиль",
     settings: "Настройки",
@@ -67,6 +68,7 @@ export const ru = {
     orders: { title: "Заказы" },
     clients: { title: "Клиенты" },
     reviews: { title: "Отзывы" },
+    faqs: { title: "FAQ" },
     notFound: {
       title: "Страница не найдена",
       description: "Запрошенной страницы не существует",
@@ -577,6 +579,68 @@ export const ru = {
     recentOrders: {
       empty: "Нет недавних заказов",
       viewAll: "Все заказы →",
+    },
+  },
+
+  faqs: {
+    title: "FAQ — Часто задаваемые вопросы",
+    create: "Добавить вопрос",
+    edit: "Редактировать вопрос",
+    empty: "Для этой игры пока нет вопросов",
+    emptyAction: "Добавить первый вопрос",
+    gameSelector: "Игра",
+    selectGame: "Выберите игру",
+    preview: "Предпросмотр",
+    previewEmpty: "Начните вводить ответ слева — превью появится здесь",
+    editMode: "Редактирование",
+    markdownHint:
+      "Поддерживается: **жирный**, [ссылка](url), параграфы (пустая строка)",
+    dragHandle: "Перетащите для изменения порядка",
+
+    fields: {
+      question: "Вопрос",
+      questionPlaceholder: "Например: Сколько времени занимает буст?",
+      answer: "Ответ",
+      answerPlaceholder: "Markdown поддерживается...",
+      orderIndex: "Порядок сортировки",
+      isActive: "Активен",
+    },
+
+    columns: {
+      order: "№",
+      question: "Вопрос",
+      active: "Активен",
+      actions: "Действия",
+    },
+
+    actions: {
+      edit: "Редактировать",
+      enable: "Включить",
+      disable: "Выключить",
+      delete: "Удалить",
+    },
+
+    validation: {
+      questionRequired: "Вопрос обязателен",
+      questionMax: "Максимум 500 символов",
+      answerRequired: "Ответ обязателен",
+      answerMax: "Максимум 10000 символов",
+    },
+
+    toasts: {
+      created: "Вопрос создан",
+      updated: "Вопрос обновлён",
+      deleted: "Вопрос удалён",
+      enabled: "Вопрос включён",
+      disabled: "Вопрос выключен",
+      reordered: "Порядок сохранён",
+      error: "Произошла ошибка",
+    },
+
+    deleteConfirm: {
+      title: "Удалить вопрос?",
+      description:
+        "Вопрос «{question}» будет удалён без возможности восстановления.",
     },
   },
 };

@@ -1,0 +1,64 @@
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.gameSelectWrap {
+  min-width: 240px;
+  max-width: 320px;
+  flex: 1 1 240px;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--space-4);
+}
+
+.tableWrap {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.table thead th {
+  padding: var(--space-3);
+  text-align: left;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-secondary);
+  background: var(--color-bg-subtle, var(--color-surface));
+  border-bottom: 1px solid var(--color-border);
+}
+
+.handleHead {
+  width: 36px;
+  padding-left: var(--space-2) !important;
+  padding-right: 0 !important;
+}
+
+.indexHead {
+  width: 56px;
+}
+
+.activeHead {
+  width: 100px;
+  text-align: center !important;
+}
+
+.actionsHead {
+  width: 60px;
+  text-align: right !important;
+}

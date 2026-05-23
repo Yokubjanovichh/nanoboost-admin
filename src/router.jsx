@@ -13,6 +13,7 @@ import { ClientsListPage } from "@/features/clients/pages/ClientsListPage";
 import { ClientDetailPage } from "@/features/clients/pages/ClientDetailPage";
 import { ReviewsListPage } from "@/features/reviews/pages/ReviewsListPage";
 import { ReviewFormPage } from "@/features/reviews/pages/ReviewFormPage";
+import { FaqsPage } from "@/features/faq/pages/FaqsPage";
 import { NotFoundPage } from "@/pages/NotFoundPage";
 import { Spinner } from "@/components/ui/Spinner/Spinner";
 
@@ -71,6 +72,7 @@ export const router = createBrowserRouter([
       { path: "reviews", element: <ReviewsListPage /> },
       { path: "reviews/new", element: <ReviewFormPage /> },
       { path: "reviews/:id/edit", element: <ReviewFormPage /> },
+      { path: "faqs", element: <FaqsPage /> },
     ],
   },
   { path: "*", element: <NotFoundPage /> },
