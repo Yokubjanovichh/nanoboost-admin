@@ -58,8 +58,8 @@
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  --z-dropdown: 100;
   --z-modal: 200;
+  --z-dropdown: 250;
   --z-toast: 300;
 
   --transition-fast: 150ms ease;
