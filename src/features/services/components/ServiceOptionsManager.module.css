@@ -35,6 +35,10 @@
   color: var(--color-text-primary);
 }
 
+.discountEmpty {
+  color: var(--color-text-muted);
+}
+
 .actions {
   display: inline-flex;
   align-items: center;

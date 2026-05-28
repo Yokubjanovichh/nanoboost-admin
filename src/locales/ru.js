@@ -237,6 +237,7 @@ export const ru = {
         label: "Метка",
         priceUsd: "USD",
         priceEur: "EUR",
+        discount: "Скидка",
         isDefault: "По умолчанию",
         sortOrder: "Порядок",
         actions: "Действия",
@@ -247,6 +248,14 @@ export const ru = {
         price: "Цена",
         isDefault: "По умолчанию",
         sortOrder: "Порядок",
+        discount: "Скидка",
+        discountType: "Тип скидки",
+        discountNone: "Без скидки",
+        discountPercent: "Процент",
+        discountAmount: "Фиксированная сумма",
+        discountPercentLabel: "Скидка %",
+        discountUsdLabel: "Скидка USD",
+        discountEurLabel: "Скидка EUR",
       },
       actions: {
         edit: "Редактировать",
@@ -294,6 +303,10 @@ export const ru = {
       priceRequired: "Цена обязательна",
       labelRequired: "Метка обязательна",
       labelMax: "Максимум 200 символов",
+      discountTypeRequired: "Выберите тип скидки",
+      discountPercentRange: "Скидка должна быть от 1 до 100",
+      discountAmountRequired: "Сумма скидки обязательна",
+      discountAmountPositive: "Скидка должна быть больше 0",
     },
 
     toasts: {

@@ -113,6 +113,27 @@ export function ServiceOptionsManager({ serviceId }) {
         cell: ({ row }) => formatCurrency(row.original.price_eur, "EUR"),
       },
       {
+        id: "discount",
+        header: ru.services.options.columns.discount,
+        size: 160,
+        align: "right",
+        cell: ({ row }) => {
+          const o = row.original;
+          if (o.discount_type === "percent" && o.discount_percent != null) {
+            return <Badge variant="danger">{`-${Number(o.discount_percent)}%`}</Badge>;
+          }
+          if (
+            o.discount_type === "amount" &&
+            (o.discount_amount_usd != null || o.discount_amount_eur != null)
+          ) {
+            const usd = `-${formatCurrency(o.discount_amount_usd ?? 0, "USD")}`;
+            const eur = `-${formatCurrency(o.discount_amount_eur ?? 0, "EUR")}`;
+            return <Badge variant="danger">{`${usd} / ${eur}`}</Badge>;
+          }
+          return <span className={styles.discountEmpty}>—</span>;
+        },
+      },
+      {
         id: "sort_order",
         header: ru.services.options.columns.sortOrder,
         size: 100,
