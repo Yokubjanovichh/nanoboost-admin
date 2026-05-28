@@ -108,13 +108,13 @@ const defaultValues = {
   discount_amount_eur: null,
 };
 
-// Backend infers discount_type from existing options; we treat any missing /
-// "none" type as "no discount" and null out the unused price branches.
+// Backend doesn't return a discount_type field — infer it from whichever
+// value field is populated. discount_percent wins if both are somehow set
+// (shouldn't happen per backend validation, but defensive).
 function resolveExistingDiscountType(option) {
   if (!option) return "none";
-  if (option.discount_type === "percent" || option.discount_type === "amount") {
-    return option.discount_type;
-  }
+  if (option.discount_percent != null) return "percent";
+  if (option.discount_amount_usd != null) return "amount";
   return "none";
 }
 
