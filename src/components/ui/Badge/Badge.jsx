@@ -7,6 +7,9 @@ const VARIANTS = {
   danger: styles.variantDanger,
   info: styles.variantInfo,
   neutral: styles.variantNeutral,
+  purple: styles.variantPurple,
+  teal: styles.variantTeal,
+  indigo: styles.variantIndigo,
 };
 
 export function Badge({ variant = "neutral", children, className, ...rest }) {

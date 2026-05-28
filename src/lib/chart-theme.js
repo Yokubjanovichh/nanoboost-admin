@@ -6,6 +6,8 @@ export const CHART_PALETTE = {
   primaryLight: "rgba(104, 73, 254, 0.18)",
   cyan: "#2de1fe",
   violet: "#9d21fe",
+  teal: "#14b8a6",
+  indigo: "#6366f1",
   success: "#22c55e",
   warning: "#f59e0b",
   danger: "#ef4444",
@@ -18,13 +20,18 @@ export const CHART_PALETTE = {
   border: "rgba(255, 255, 255, 0.08)",
 };
 
+// Color map for the 9-state pipeline. cancelled = danger (active negative),
+// refunded = muted (closed/dormant) — semantic flip from earlier mapping.
 export const STATUS_COLOR = {
   pending: CHART_PALETTE.warning,
   paid: CHART_PALETTE.info,
-  in_progress: CHART_PALETTE.primary,
+  awaiting_booster: CHART_PALETTE.violet,
+  in_progress: CHART_PALETTE.cyan,
+  booster_completed: CHART_PALETTE.teal,
+  delivered_to_client: CHART_PALETTE.indigo,
   completed: CHART_PALETTE.success,
-  cancelled: CHART_PALETTE.textMuted,
-  refunded: CHART_PALETTE.danger,
+  cancelled: CHART_PALETTE.danger,
+  refunded: CHART_PALETTE.textMuted,
 };
 
 export const AXIS_PROPS = {

@@ -328,12 +328,15 @@ export const ru = {
     noComment: "Комментариев нет",
 
     status: {
-      pending: "Ожидает",
+      pending: "Ожидает оплату",
       paid: "Оплачен",
+      awaiting_booster: "Ожидает бустера",
       in_progress: "В работе",
-      completed: "Завершён",
-      cancelled: "Отменён",
-      refunded: "Возврат",
+      booster_completed: "Выполнен бустером",
+      delivered_to_client: "Выдан клиенту",
+      completed: "Завершен",
+      cancelled: "Отменен",
+      refunded: "Возврат провайдером",
       finalNote: "Изменение статуса невозможно",
     },
 
@@ -398,6 +401,8 @@ export const ru = {
       orderTotal: "Сумма заказа",
       itemsCount: "Позиций",
       orderDate: "Дата создания",
+      lifecycle: "Жизненный цикл",
+      lifecycleEmpty: "Переходов ещё не было",
     },
 
     itemColumns: {

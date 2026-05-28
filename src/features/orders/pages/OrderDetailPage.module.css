@@ -39,6 +39,25 @@
   gap: var(--space-4);
 }
 
+.lifecycleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  border-bottom: 1px dashed var(--color-border);
+}
+
+.lifecycleRow:last-child {
+  border-bottom: none;
+}
+
+.lifecycleTime {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
 .fieldLabel {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);

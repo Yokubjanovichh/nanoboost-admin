@@ -1,10 +1,27 @@
-export const ORDER_STATUSES = ["pending", "paid", "in_progress", "completed", "cancelled", "refunded"];
+// Display order — all 9 statuses backend can return (refunded is shown but
+// never selectable as an admin transition target; see ORDER_STATUS_TRANSITIONS).
+export const ORDER_STATUSES = [
+  "pending",
+  "paid",
+  "awaiting_booster",
+  "in_progress",
+  "booster_completed",
+  "delivered_to_client",
+  "completed",
+  "cancelled",
+  "refunded",
+];
 
+// Admin-allowed transitions. `refunded` is intentionally absent from every
+// target list — the provider sets it via webhook, admins must not pick it.
 export const ORDER_STATUS_TRANSITIONS = {
   pending: ["paid", "cancelled"],
-  paid: ["in_progress", "refunded", "cancelled"],
-  in_progress: ["completed", "cancelled"],
-  completed: ["refunded"],
+  paid: ["awaiting_booster", "cancelled"],
+  awaiting_booster: ["in_progress", "cancelled"],
+  in_progress: ["booster_completed", "cancelled"],
+  booster_completed: ["delivered_to_client", "cancelled"],
+  delivered_to_client: ["completed"],
+  completed: [],
   cancelled: [],
   refunded: [],
 };
@@ -12,10 +29,13 @@ export const ORDER_STATUS_TRANSITIONS = {
 export const ORDER_STATUS_VARIANT = {
   pending: "warning",
   paid: "info",
+  awaiting_booster: "purple",
   in_progress: "info",
+  booster_completed: "teal",
+  delivered_to_client: "indigo",
   completed: "success",
-  cancelled: "neutral",
-  refunded: "danger",
+  cancelled: "danger",
+  refunded: "neutral",
 };
 
 import { CreditCard, Wallet, Bitcoin } from "lucide-react";

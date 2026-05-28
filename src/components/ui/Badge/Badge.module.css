@@ -40,3 +40,21 @@
   color: var(--color-text-secondary);
   border-color: var(--color-border);
 }
+
+.variantPurple {
+  background-color: rgba(157, 33, 254, 0.14);
+  color: #c89bff;
+  border-color: rgba(157, 33, 254, 0.36);
+}
+
+.variantTeal {
+  background-color: rgba(20, 184, 166, 0.14);
+  color: #5eead4;
+  border-color: rgba(20, 184, 166, 0.36);
+}
+
+.variantIndigo {
+  background-color: rgba(99, 102, 241, 0.14);
+  color: #a5b4fc;
+  border-color: rgba(99, 102, 241, 0.36);
+}

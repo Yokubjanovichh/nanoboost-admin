@@ -29,6 +29,21 @@ import {
   PAYMENT_METHOD_ICON,
   PAYMENT_STATUS_FROM_ORDER,
 } from "@/features/orders/constants";
+
+// Lifecycle timestamps follow the `<status>_at` convention from the backend.
+// pending is omitted (the initial creation timestamp is shown elsewhere as
+// orderDate). Rows render in chronological transition order; missing fields
+// (null/undefined) are skipped.
+const LIFECYCLE_STATUSES = [
+  "paid",
+  "awaiting_booster",
+  "in_progress",
+  "booster_completed",
+  "delivered_to_client",
+  "completed",
+  "cancelled",
+  "refunded",
+];
 import { CopyButton } from "@/components/ui/CopyButton/CopyButton";
 import { formatDate, formatCurrency } from "@/lib/utils";
 import { ru } from "@/locales/ru";
@@ -425,6 +440,29 @@ function OrderDetailPageInner({ order, id }) {
             </div>
           </Card>
         )}
+
+        <Card header={<CardTitle>{ru.orders.detail.lifecycle}</CardTitle>}>
+          {(() => {
+            const rows = LIFECYCLE_STATUSES.map((s) => ({ s, at: order[`${s}_at`] })).filter(
+              (r) => r.at,
+            );
+            if (rows.length === 0) {
+              return (
+                <p className={styles.commentEmpty}>{ru.orders.detail.lifecycleEmpty}</p>
+              );
+            }
+            return (
+              <div className={styles.fields}>
+                {rows.map(({ s, at }) => (
+                  <div key={s} className={styles.lifecycleRow}>
+                    <StatusBadge type="order" status={s} />
+                    <span className={styles.lifecycleTime}>{formatDate(at)}</span>
+                  </div>
+                ))}
+              </div>
+            );
+          })()}
+        </Card>
 
         <Card header={<CardTitle>{ru.orders.detail.customerComment}</CardTitle>}>
           <p className={order.comment ? styles.comment : styles.commentEmpty}>
